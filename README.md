@@ -1,7 +1,7 @@
 # jtraskas.io
 
 A personal blog built with Next.js and Tailwind CSS, published to
-[GitHub Pages](https://dtraskas.github.io/jtraskas.io/) via GitHub Actions.
+[GitHub Pages](https://traskas-consulting.com/) via GitHub Actions.
 
 ## Make it yours
 
@@ -41,7 +41,7 @@ The long form `uv run scripts/<name>.py` also works.
 ## Deployment
 
 Every push to `master` builds the static export and publishes it to GitHub
-Pages at https://dtraskas.github.io/jtraskas.io/.
+Pages at https://traskas-consulting.com/.
 
 One-time setup for a new GitHub repository:
 
@@ -49,9 +49,11 @@ One-time setup for a new GitHub repository:
    push this project to its `master` branch.
 2. In the repository, go to Settings → Pages and set **Source** to
    **GitHub Actions**.
+3. Under Settings → Pages → Custom domain, enter `traskas-consulting.com`,
+   and at the domain registrar point the apex domain at GitHub Pages
+   (A records to GitHub's Pages IPs, or an ALIAS/ANAME record to
+   `dtraskas.github.io`). Enable **Enforce HTTPS** once the DNS check passes.
 
-Because the site is served from a project subpath, the workflow builds with
-`NEXT_PUBLIC_BASE_PATH=/jtraskas.io`. To move the site to a custom domain
-later, drop that variable from `.github/workflows/ci.yml`, set
-`NEXT_PUBLIC_SITE_URL` to the new origin, and add the domain under
-Settings → Pages.
+The site is served from the domain root, so the workflow leaves
+`NEXT_PUBLIC_BASE_PATH` unset and sets `NEXT_PUBLIC_SITE_URL` to
+`https://traskas-consulting.com`.

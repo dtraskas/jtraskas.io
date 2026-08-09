@@ -17,8 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  NEXT_PUBLIC_BASE_PATH: /jtraskas.io
-  NEXT_PUBLIC_SITE_URL: https://dtraskas.github.io/jtraskas.io
+  NEXT_PUBLIC_SITE_URL: https://traskas-consulting.com
 
 jobs:
   build:
