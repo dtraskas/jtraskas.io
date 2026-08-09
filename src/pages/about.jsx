@@ -26,8 +26,35 @@ function SocialLink({ className, href, children, icon: Icon }) {
   )
 }
 
+function Section({ section }) {
+  return (
+    <section>
+      <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+        {section.heading}
+      </h2>
+      <div className="mt-4 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+        {section.paragraphs?.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
+        {section.items && (
+          <dl className="space-y-6">
+            {section.items.map((item) => (
+              <div key={item.title}>
+                <dt className="font-semibold text-zinc-800 dark:text-zinc-100">
+                  {item.title}
+                </dt>
+                <dd className="mt-1">{item.description}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </div>
+    </section>
+  )
+}
+
 export default function About() {
-  const { social } = siteConfig
+  const { social, about } = siteConfig
 
   return (
     <>
@@ -49,11 +76,19 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              About
+              {about.title}
             </h1>
+            <p className="mt-3 text-lg font-medium text-teal-600 dark:text-teal-400">
+              {about.subtitle}
+            </p>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-              {siteConfig.about.paragraphs.map((paragraph, index) => (
+              {about.intro.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="mt-16 space-y-16">
+              {about.sections.map((section) => (
+                <Section key={section.heading} section={section} />
               ))}
             </div>
           </div>
