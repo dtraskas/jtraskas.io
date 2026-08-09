@@ -39,10 +39,6 @@ export default function Document() {
   return (
     <Html className="h-full antialiased" lang="en">
       <Head>
-        <link
-          rel="icon"
-          href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/favicon.ico`}
-        />
         {/* <script dangerouslySetInnerHTML={{ __html: modeScript }} /> */}
         {/* <link
           rel="alternate"
