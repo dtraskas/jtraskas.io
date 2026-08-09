@@ -1,7 +1,7 @@
 # jtraskas.io
 
 A personal blog built with Next.js and Tailwind CSS, published to
-[GitHub Pages](https://jtraskas.github.io/jtraskas.io/) via GitHub Actions.
+[GitHub Pages](https://dtraskas.github.io/jtraskas.io/) via GitHub Actions.
 
 ## Make it yours
 
@@ -41,11 +41,11 @@ The long form `uv run scripts/<name>.py` also works.
 ## Deployment
 
 Every push to `master` builds the static export and publishes it to GitHub
-Pages at https://jtraskas.github.io/jtraskas.io/.
+Pages at https://dtraskas.github.io/jtraskas.io/.
 
 One-time setup for a new GitHub repository:
 
-1. Create a repository named `jtraskas.io` under the `jtraskas` account and
+1. Create a repository named `jtraskas.io` under the `dtraskas` account and
    push this project to its `master` branch.
 2. In the repository, go to Settings → Pages and set **Source** to
    **GitHub Actions**.

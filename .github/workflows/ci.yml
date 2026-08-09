@@ -18,7 +18,7 @@ concurrency:
 
 env:
   NEXT_PUBLIC_BASE_PATH: /jtraskas.io
-  NEXT_PUBLIC_SITE_URL: https://jtraskas.github.io/jtraskas.io
+  NEXT_PUBLIC_SITE_URL: https://dtraskas.github.io/jtraskas.io
 
 jobs:
   build:
