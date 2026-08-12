@@ -1,16 +1,18 @@
 import Head from 'next/head'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 
+import { CallToAction } from '@/components/CallToAction'
 import { Container } from '@/components/Container'
-import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
+import { formatDate } from '@/lib/formatDate'
 import { siteConfig } from '@/lib/siteConfig'
 
 function ArrowLeftIcon(props) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
-        d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
+        d="M13 8H3m0 0 3.5-3.5M3 8l3.5 3.5"
+        stroke="currentColor"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -19,55 +21,56 @@ function ArrowLeftIcon(props) {
   )
 }
 
-export function ArticleLayout({
-  children,
-  meta,
-  isRssFeed = false,
-  previousPathname,
-}) {
-  let router = useRouter()
-
+export function ArticleLayout({ children, meta, isRssFeed = false }) {
   if (isRssFeed) {
     return children
   }
-  
+
   return (
     <>
       <Head>
-        <title>{`${meta.title} - ${siteConfig.name}`}</title>
+        <title>{`${meta.title} — Traskas Consulting`}</title>
         <meta name="description" content={meta.description} />
+        {/* A draft is already kept out of every listing; this also keeps it
+            out of search results while its page remains reachable by URL. */}
+        {meta.draft && <meta name="robots" content="noindex, nofollow" />}
       </Head>
-      <Container className="mt-16 lg:mt-32">
-        <div className="xl:relative">
-          <div className="mx-auto max-w-2xl">
-            {previousPathname && (
-              <button
-                type="button"
-                onClick={() => router.back()}
-                aria-label="Go back to articles"
-                className="group mb-8 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:mb-0 lg:-mt-2 xl:-top-1.5 xl:left-0 xl:mt-0"
+
+      <Container className="pt-14 pb-16 sm:pt-20 sm:pb-24">
+        <div className="mx-auto max-w-prose">
+          <Link
+            href="/insights"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-navy outline-none focus-visible:ring-2 focus-visible:ring-navy focus-visible:ring-offset-2"
+          >
+            <ArrowLeftIcon className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            All insights
+          </Link>
+
+          <article className="mt-10">
+            <header>
+              <time
+                dateTime={meta.date}
+                className="text-sm font-semibold uppercase tracking-[0.14em] text-navy"
               >
-                <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover:stroke-zinc-400" />
-              </button>
-            )}
-            <article>
-              <header className="flex flex-col">
-                <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-                  {meta.title}
-                </h1>
-                <time
-                  dateTime={meta.date}
-                  className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
-                >
-                  <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
-                  <span className="ml-3">{formatDate(meta.date)}</span>
-                </time>
-              </header>
-              <Prose className="mt-8">{children}</Prose>        
-            </article>
-          </div>
+                {formatDate(meta.date)}
+              </time>
+              <h1 className="mt-4 font-serif text-6xl font-semibold tracking-tight text-navy lg:text-7xl">
+                {meta.title}
+              </h1>
+              {meta.standfirst && (
+                <p className="mt-6 text-xl text-ink">{meta.standfirst}</p>
+              )}
+              <p className="mt-6 border-t border-hairline pt-6 text-base text-ink">
+                By {meta.author ?? siteConfig.name}
+              </p>
+            </header>
+
+            <Prose className="mt-10">{children}</Prose>
+          </article>
         </div>
       </Container>
+
+      <CallToAction />
     </>
   )
 }

@@ -1,130 +1,85 @@
-import Image from 'next/image'
 import Head from 'next/head'
-import Link from 'next/link'
-import clsx from 'clsx'
 
+import { CallToAction } from '@/components/CallToAction'
 import { Container } from '@/components/Container'
-import {
-  LinkedInIcon,
-  GitHubIcon,
-  TwitterIcon,
-} from '@/components/SocialIcons'
+import { HeroImage } from '@/components/HeroImage'
+import { Section, SectionHeading } from '@/components/Section'
 import { siteConfig } from '@/lib/siteConfig'
-import portraitImage from '@/images/portrait.png'
-
-function SocialLink({ className, href, children, icon: Icon }) {
-  return (
-    <li className={clsx(className, 'flex')}>
-      <Link
-        href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
-      >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
-        <span className="ml-4">{children}</span>
-      </Link>
-    </li>
-  )
-}
-
-function Section({ section }) {
-  return (
-    <section>
-      <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
-        {section.heading}
-      </h2>
-      <div className="mt-4 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-        {section.paragraphs?.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
-        {section.items && (
-          <dl className="space-y-6">
-            {section.items.map((item) => (
-              <div key={item.title}>
-                <dt className="font-semibold text-zinc-800 dark:text-zinc-100">
-                  {item.title}
-                </dt>
-                <dd className="mt-1">{item.description}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
-      </div>
-    </section>
-  )
-}
 
 export default function About() {
-  const { social, about } = siteConfig
+  const { about } = siteConfig
+  const [firstParagraph, secondParagraph, ...restOfBiography] = about.biography
 
   return (
     <>
       <Head>
-        <title>{`About - ${siteConfig.name}`}</title>
-        <meta name="description" content={siteConfig.metaDescription} />
+        <title>{`About Julia Traskas — Traskas Consulting`}</title>
+        <meta
+          name="description"
+          content="Julia Traskas on how a career in writing, business development and consulting marketing came together into senior marketing support for consulting firms."
+        />
       </Head>
-      <Container className="mt-16 sm:mt-32">
-        <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-          <div className="lg:pl-20">
-            <div className="max-w-xs px-2.5 lg:max-w-none">
-              <Image
-                src={portraitImage}
-                alt=""
-                sizes="(min-width: 1024px) 32rem, 20rem"
-                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
-              />
-            </div>
+
+      {/* Opening section: two-column hero with the portrait beside the first
+          two paragraphs on a laptop, stacked on a phone. */}
+      <Container className="pt-16 pb-16 sm:pt-24 sm:pb-24">
+        <h1 className="max-w-3xl font-serif text-6xl font-semibold tracking-tight text-navy lg:text-7xl">
+          {about.title}
+        </h1>
+        <p className="mt-6 max-w-2xl text-xl text-ink">{about.standfirst}</p>
+
+        <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="space-y-6 text-lg text-ink lg:order-first lg:col-span-7">
+            <p>{firstParagraph}</p>
+            <p>{secondParagraph}</p>
           </div>
-          <div className="lg:order-first lg:row-span-2">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              {about.title}
-            </h1>
-            <p className="mt-3 text-lg font-medium text-teal-600 dark:text-teal-400">
-              {about.subtitle}
-            </p>
-            <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-              {about.intro.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </div>
-            <div className="mt-16 space-y-16">
-              {about.sections.map((section) => (
-                <Section key={section.heading} section={section} />
-              ))}
-            </div>
-          </div>
-          <div className="lg:pl-20">
-            <ul role="list">
-              {social.linkedin && (
-                <SocialLink
-                  href={social.linkedin}
-                  icon={LinkedInIcon}
-                  className="mt-4"
-                >
-                  Follow on LinkedIn
-                </SocialLink>
-              )}
-              {social.github && (
-                <SocialLink
-                  href={social.github}
-                  icon={GitHubIcon}
-                  className="mt-4"
-                >
-                  Follow on GitHub
-                </SocialLink>
-              )}
-              {social.twitter && (
-                <SocialLink
-                  href={social.twitter}
-                  icon={TwitterIcon}
-                  className="mt-4"
-                >
-                  Follow on Twitter
-                </SocialLink>
-              )}
-            </ul>
+
+          <div className="lg:col-span-5">
+            <HeroImage
+              alt={about.portraitAlt}
+              aspect="aspect-[5/6]"
+              offset="left"
+              priority
+              className="mx-auto max-w-md lg:max-w-none"
+            />
           </div>
         </div>
+
+        {/* Pull quote lifted from the opening paragraph. */}
+        <blockquote className="mt-16 max-w-2xl border-l-[3px] border-gold pl-6 font-serif text-2xl text-navy">
+          {about.pullQuote}
+        </blockquote>
+
+        <div className="mt-16 max-w-2xl space-y-6 text-lg text-ink">
+          {restOfBiography.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
       </Container>
+
+      {/* Selected experience */}
+      <Section tone="sand">
+        <SectionHeading as="h2">{about.experienceHeading}</SectionHeading>
+        <dl className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {about.experience.map((item) => (
+            <div
+              key={item.title}
+              className="rounded-lg border border-hairline bg-paper p-6 sm:p-8"
+            >
+              <span
+                aria-hidden="true"
+                className="block h-1 w-10 rounded-full bg-gold"
+              />
+              <dt className="mt-5 font-serif text-xl font-semibold text-navy">
+                {item.title}
+              </dt>
+              <dd className="mt-3 text-base text-ink">{item.description}</dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
+      <CallToAction />
     </>
   )
 }

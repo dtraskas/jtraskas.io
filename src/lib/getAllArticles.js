@@ -3,7 +3,7 @@ import * as path from 'path'
 
 async function importArticle(articleFilename) {
   let { meta, default: component } = await import(
-    `../pages/articles/${articleFilename}`
+    `../pages/insights/${articleFilename}`
   )
   return {
     slug: articleFilename.replace(/(\/index)?\.mdx$/, ''),
@@ -14,10 +14,13 @@ async function importArticle(articleFilename) {
 
 export async function getAllArticles() {
   let articleFilenames = await glob(['*.mdx', '*/index.mdx'], {
-    cwd: path.join(process.cwd(), 'src/pages/articles'),
+    cwd: path.join(process.cwd(), 'src/pages/insights'),
   })
 
   let articles = await Promise.all(articleFilenames.map(importArticle))
 
-  return articles.sort((a, z) => new Date(z.date) - new Date(a.date))
+  // Unpublished drafts stay out of every listing.
+  return articles
+    .filter((article) => article.draft !== true)
+    .sort((a, z) => new Date(z.date) - new Date(a.date))
 }

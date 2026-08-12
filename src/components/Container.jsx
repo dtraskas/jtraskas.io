@@ -1,42 +1,25 @@
 import { forwardRef } from 'react'
 import clsx from 'clsx'
 
-const OuterContainer = forwardRef(function OuterContainer(
-  { className, children, ...props },
-  ref
-) {
-  return (
-    <div ref={ref} className={clsx('sm:px-8', className)} {...props}>
-      <div className="mx-auto max-w-7xl lg:px-8">{children}</div>
-    </div>
-  )
-})
-
-const InnerContainer = forwardRef(function InnerContainer(
-  { className, children, ...props },
-  ref
-) {
-  return (
-    <div
-      ref={ref}
-      className={clsx('relative px-4 sm:px-8 lg:px-12', className)}
-      {...props}
-    >
-      <div className="mx-auto max-w-2xl lg:max-w-5xl">{children}</div>
-    </div>
-  )
-})
-
+/**
+ * The single horizontal rhythm for the site. Everything sits inside this so
+ * the wordmark, headings and body copy all line up down the left edge.
+ */
 export const Container = forwardRef(function Container(
-  { children, ...props },
+  { className, children, ...props },
   ref
 ) {
   return (
-    <OuterContainer ref={ref} {...props}>
-      <InnerContainer>{children}</InnerContainer>
-    </OuterContainer>
+    <div ref={ref} className={clsx('px-5 sm:px-8', className)} {...props}>
+      <div className="mx-auto w-full max-w-6xl">{children}</div>
+    </div>
   )
 })
 
-Container.Outer = OuterContainer
-Container.Inner = InnerContainer
+/**
+ * A narrower column for running text. The brief asks that paragraphs are not
+ * stretched across the full width of the screen.
+ */
+export function TextColumn({ className, children }) {
+  return <div className={clsx('max-w-2xl', className)}>{children}</div>
+}
