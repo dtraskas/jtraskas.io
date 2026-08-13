@@ -36,6 +36,7 @@ export default function About() {
 
           <div className="lg:col-span-5">
             <HeroImage
+              showPortrait={siteConfig.portrait.about}
               alt={about.portraitAlt}
               aspect="aspect-[5/6]"
               offset="left"

@@ -41,6 +41,7 @@ export default function Home({ articles }) {
 
           <div className="lg:col-span-5">
             <HeroImage
+              showPortrait={siteConfig.portrait.home}
               alt={home.hero.portraitAlt}
               aspect="aspect-[4/5]"
               offset="right"

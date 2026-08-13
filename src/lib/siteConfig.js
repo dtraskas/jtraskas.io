@@ -37,10 +37,9 @@ export const siteConfig = squish({
 
   url: 'https://traskas-consulting.com',
 
-  // TODO: once src/images/portrait.png is Julia's professional photograph
-  // rather than the template placeholder, set `use` to true. Until then the
-  // Home and About heroes show the branded editorial graphic instead.
-  portrait: { use: false },
+  // Which heroes show Julia's photograph (src/images/portrait.jpg). Where
+  // this is false the hero shows the branded editorial graphic instead.
+  portrait: { home: false, about: true },
 
   metaDescription:
     'Traskas Consulting — senior marketing support for consulting firms. Thought leadership, marketing strategy and content that supports business development.',

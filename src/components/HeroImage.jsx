@@ -2,17 +2,16 @@ import Image from 'next/image'
 import clsx from 'clsx'
 
 import { EditorialMark } from '@/components/EditorialMark'
-import { siteConfig } from '@/lib/siteConfig'
-import portraitImage from '@/images/portrait.png'
+import portraitImage from '@/images/portrait.jpg'
 
 /**
  * The image slot in the Home and About heroes, offset against a sand block.
  *
- * Shows the branded editorial graphic until a real portrait is supplied —
- * flip `siteConfig.portrait.use` to true once `src/images/portrait.png` is
- * Julia's photograph.
+ * With `showPortrait` it renders Julia's photograph; without it, the branded
+ * editorial graphic. Which page gets which is set in `siteConfig.portrait`.
  */
 export function HeroImage({
+  showPortrait = false,
   aspect = 'aspect-[4/5]',
   offset = 'right',
   alt,
@@ -28,7 +27,7 @@ export function HeroImage({
           offset === 'right' ? '-right-4' : '-left-4'
         )}
       />
-      {siteConfig.portrait.use ? (
+      {showPortrait ? (
         <Image
           src={portraitImage}
           alt={alt}
