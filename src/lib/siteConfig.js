@@ -206,7 +206,7 @@ export const siteConfig = squish({
        it happen. After several years working in marketing within the UK
        welfare-to-work sector, I moved into consulting.`,
       `My first contract was meant to be two days a week for three months. It
-       became a four-year relationship with Maine Pointe, a US-based supply
+       became a seven-year relationship with Maine Pointe, a US-based supply
        chain and operations consultancy, during a period of significant growth
        that ultimately led to a private equity buyout. I later worked as part of
        the marketing team at JMJ Associates and, more recently, helped establish
@@ -229,7 +229,7 @@ export const siteConfig = squish({
     experience: [
       {
         title: 'Maine Pointe',
-        description: `For six years, I worked with the global marketing team of
+        description: `For seven years, I worked with the global marketing team of
           a leading supply chain and operations consulting firm, helping develop
           a distinctive brand voice and thought leadership programme. I
           translated complex supply chain expertise into articles, campaigns and
