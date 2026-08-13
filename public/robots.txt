@@ -1,0 +1,10 @@
+# The whole site is public and may be crawled.
+#
+# Unpublished drafts are deliberately NOT disallowed here: they carry a
+# `noindex` tag instead, and a crawler has to be able to fetch a page to see
+# that tag. Blocking them here would leave them eligible for indexing.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://traskas-consulting.com/sitemap.xml
