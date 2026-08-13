@@ -20,13 +20,17 @@ export function HeroImage({
 }) {
   return (
     <div className={clsx('relative', className)}>
-      <span
-        aria-hidden="true"
-        className={clsx(
-          'absolute -bottom-4 h-full w-full rounded-lg bg-sand',
-          offset === 'right' ? '-right-4' : '-left-4'
-        )}
-      />
+      {/* The offset sand block sits behind the editorial graphic only; a
+          photograph carries enough weight on its own. */}
+      {!showPortrait && (
+        <span
+          aria-hidden="true"
+          className={clsx(
+            'absolute -bottom-4 h-full w-full rounded-lg bg-sand',
+            offset === 'right' ? '-right-4' : '-left-4'
+          )}
+        />
+      )}
       {showPortrait ? (
         <Image
           src={portraitImage}

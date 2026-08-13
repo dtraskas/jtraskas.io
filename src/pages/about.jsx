@@ -28,10 +28,18 @@ export default function About() {
         </h1>
         <p className="mt-6 max-w-2xl text-xl text-ink">{about.standfirst}</p>
 
-        <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="space-y-6 text-lg text-ink lg:order-first lg:col-span-7">
-            <p>{firstParagraph}</p>
-            <p>{secondParagraph}</p>
+        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:order-first lg:col-span-7">
+            <div className="space-y-6 text-lg text-ink">
+              <p>{firstParagraph}</p>
+              <p>{secondParagraph}</p>
+            </div>
+
+            {/* The pull quote sits inside the text column so it fills the
+                space beside the portrait rather than leaving a gap. */}
+            <blockquote className="mt-8 border-l-[3px] border-gold pl-6 font-serif text-2xl text-navy">
+              {about.pullQuote}
+            </blockquote>
           </div>
 
           <div className="lg:col-span-5">
@@ -41,17 +49,12 @@ export default function About() {
               aspect="aspect-[5/6]"
               offset="left"
               priority
-              className="mx-auto max-w-md lg:max-w-none"
+              className="mx-auto max-w-sm lg:max-w-none"
             />
           </div>
         </div>
 
-        {/* Pull quote lifted from the opening paragraph. */}
-        <blockquote className="mt-16 max-w-2xl border-l-[3px] border-gold pl-6 font-serif text-2xl text-navy">
-          {about.pullQuote}
-        </blockquote>
-
-        <div className="mt-16 max-w-2xl space-y-6 text-lg text-ink">
+        <div className="mt-10 max-w-2xl space-y-6 text-lg text-ink">
           {restOfBiography.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
