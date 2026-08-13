@@ -181,7 +181,7 @@ export const siteConfig = squish({
          priorities.`,
       ],
       link: {
-        label: 'Read The Rise of the Bionic Writer',
+        label: 'Read the rise of the bionic writer',
         href: '/insights/the-bionic-writer',
       },
     },

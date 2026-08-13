@@ -3,12 +3,13 @@ import { ArticleLayout } from '@/components/ArticleLayout'
 export const meta = {
   author: 'Julia Traskas',
   date: '2026-07-28',
-  title: 'The Rise of the Bionic Writer',
-  // No `standfirst` here on purpose: this article's summary is its own opening
-  // line, so showing it above the body would repeat the first paragraphs.
-  // `description` still supplies the card summary and the meta description.
+  title: 'The rise of the bionic writer',
+  // Shown above the article and used as the card summary on Insights.
+  standfirst:
+    'AI can accelerate the writing process, but creating distinctive, commercially useful content still depends on human experience and judgement.',
+  // Used for <meta name="description">.
   description:
-    'A colleague recently described me as “bionic.” I laughed at the time, but the phrase has stayed with me.',
+    'AI is changing the writing process, but the strongest work still depends on human expertise, judgement and voice.',
 }
 
 export default (props) => <ArticleLayout meta={meta} {...props} />
